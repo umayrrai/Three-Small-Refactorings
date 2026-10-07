@@ -37,22 +37,21 @@
     const ctx = canvas.getContext("2d");
 
     function chooseTarget(enemies) {
-      let target = null;
-      // Pick the living enemy with the greatest current health.
-      for (const enemy of enemies) {
-        // If health is zero, that enemy is not alive.
-        if (enemy.health <= 0)
-        {
-          continue;
-        }
-        // If two enemies have equal health, the later one in the list wins.
-          if (target && target.health > enemy.health) {
-          continue;
-          }
-          target = enemy;
-      }
-      return target;
+  let target = null;
+  // Pick the living enemy with the greatest current health.
+  for (const enemy of enemies) {
+    // If health is zero, that enemy is not alive.
+    if (enemy.health <= 0) {
+      continue;
     }
+    // Replace the target if there is none yet, or if this enemy has at least
+    // as much health. On a tie, the later enemy wins.
+    if (!target || enemy.health >= target.health) {
+      target = enemy;
+    }
+  }
+  return target;
+}
 
     function draw() {
       const enemies = waves[waveIndex];
