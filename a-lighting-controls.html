@@ -28,10 +28,7 @@
     const swatch = document.querySelector("#swatch");
 
     function update() {
-      let item = presets[0];
-      for (let i = 0; i < presets.length; i++) {
-        if (i === activeIndex) item = presets[i];
-      }
+      const item = presets[activeIndex];
       label.textContent = item.name;
       swatch.style.backgroundColor = item.color;
     }
